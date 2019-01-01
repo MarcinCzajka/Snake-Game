@@ -141,21 +141,21 @@ void SnakeHead::movement()
 
     while(1)
     {
-
      Sleep(50);
      waitSec--;
+
         if(kbhit())
         {
-           c=getch();
-           waitSec=1;//removing this line will make Snake movement classic but less responsive.
-                    //leaving this is kind of a bug as Snake will freeze if button stay pressed.
+           c=getch();//This line is doubled because if its not, movement will happen twice.
+            c=getch();//I believe above is one of many issues with conio.h library
+           break;
         }
 
      if(waitSec==0)   // wait complete.
      break;
     }
 
-    //Second contition forbids Snake going backwards
+    //Second contition in if forbids Snake from going backwards
     if (c==72&&direction!=2) direction=1;
     else if (c==80&&direction!=1) direction=2;
     else if (c==75&&direction!=4) direction=3;
